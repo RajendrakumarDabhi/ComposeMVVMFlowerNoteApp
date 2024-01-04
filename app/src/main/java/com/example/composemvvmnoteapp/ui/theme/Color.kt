@@ -7,8 +7,8 @@ val colorPrimary = Color(0xFF1BA57B)
 val gray = Color(0xFF4B4F5A)
 val light_gray = Color(0xFF696969)
 
-val colorprimarywhite= Color(0xFF60C0A2)
-val dark_gray = Color(0xFF54555A)
+val colorprimarywhite= Color(0xFFA95BCA)
+val dark_gray = Color(0xFF76777A)
 val ghost_white = Color(0xFFF8F8F8)
 
 

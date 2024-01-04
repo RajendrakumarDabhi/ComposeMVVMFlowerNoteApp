@@ -1,6 +1,7 @@
 package com.example.composemvvmnoteapp.presentation.utils
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
@@ -17,12 +18,14 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
+import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Alignment.Companion.Center
 import androidx.compose.ui.Alignment.Companion.CenterVertically
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.SpanStyle
@@ -63,7 +66,7 @@ fun ColumnScope.Space(space: Dp) = Box(modifier = Modifier.height(space))
 fun annotatedStringAtStart(
     annotatedText: String,
     normalText: String,
-    annotationColor: Color
+    annotationColor: Color,
 ): AnnotatedString {
     return buildAnnotatedString {
         withStyle(style = SpanStyle(annotationColor)) {
@@ -93,13 +96,37 @@ fun LoadLocalResource(modifier: Modifier, id: Int, contentDesc: String) {
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun TextFieldWithLabel(onTextChange: (value: String) -> Unit) {
-    Column(Modifier.fillMaxWidth()) {
-        Text(text = "Email", style = MaterialTheme.typography.bodyMedium)
-        TextField(modifier = Modifier.fillMaxWidth(), value = "", onValueChange = {
-            onTextChange(it)
-        }, leadingIcon = { Icon(imageVector = Icons.Default.Email, contentDescription = "") },
-            label = { Text("Email") }
+fun TextFieldWithLabel(
+    modifier: Modifier,
+    imgIcon: ImageVector,
+    tintColor: Color,
+    label: String,
+    value: String,
+    onTextChange: (value: String) -> Unit
+) {
+    Column(modifier) {
+        Text(text = label, style = MaterialTheme.typography.bodyMedium)
+        Space(space = 4.dp)
+        TextField(modifier = Modifier.fillMaxWidth(),
+            value = value,
+            onValueChange = {
+                onTextChange(it)
+            },
+            leadingIcon = {
+                Icon(
+                    imageVector = imgIcon,
+                    contentDescription = label,
+                    tint = tintColor
+                )
+            },
+            label = { Text(label) },
+            colors =  TextFieldDefaults.textFieldColors(
+                textColor = Color.Gray,
+                disabledTextColor = Color.Transparent,
+                focusedIndicatorColor = Color.Transparent,
+                unfocusedIndicatorColor = Color.Transparent,
+                disabledIndicatorColor = Color.Transparent
+            )
         )
     }
 }
@@ -132,9 +159,19 @@ fun UtilsPreview() {
             style = MaterialTheme.typography.headlineMedium
         )
         Space(space = 14.dp)
-        TextFieldWithLabel() {
-
-        }
         Space(space = 14.dp)
+        TextFieldWithLabel(
+            modifier = Modifier
+                .padding(2.dp)
+                .fillMaxWidth()
+                .padding(4.dp),
+            imgIcon = Icons.Default.Email,
+            label = "Password",
+            value = "",
+            tintColor = MaterialTheme.colorScheme.primary,
+            onTextChange = {
+
+            },
+        )
     }
 }

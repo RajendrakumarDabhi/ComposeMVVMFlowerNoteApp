@@ -1,6 +1,5 @@
 package com.example.composemvvmnoteapp.presentation.loginscreen
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -9,6 +8,9 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Email
+import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
@@ -19,6 +21,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
@@ -71,20 +74,50 @@ fun LoginScreen(navController: NavController) {
                     ) {
                         Space(space = 44.dp)
                         Text(
-                            modifier = Modifier.fillMaxWidth(),
-                                    text = annotatedStringAtStart (
-                                    "Log In",
-                            " To your Account",
-                            MaterialTheme.colorScheme.primary
-                        ), style = MaterialTheme.typography.headlineSmall
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .align(Alignment.CenterHorizontally),
+                            text = annotatedStringAtStart(
+                                "Log In",
+                                " To your Account",
+                                MaterialTheme.colorScheme.primary
+                            ), style = MaterialTheme.typography.headlineSmall,
+                            textAlign = TextAlign.Center
                         )
                         Space(space = 24.dp)
                         TextFieldWithLabel(
+                            modifier = Modifier
+                                .padding(8.dp)
+                                .fillMaxWidth()
+                                .padding(4.dp),
+                            imgIcon = Icons.Default.Email,
+                            label = "Email Address",
+                            value = "",
+                            tintColor = MaterialTheme.colorScheme.primary,
                             onTextChange = {
 
                             },
+                        )
+                        Space(space = 2.dp)
+                        TextFieldWithLabel(
+                            modifier = Modifier
+                                .padding(8.dp)
+                                .fillMaxWidth()
+                                .padding(4.dp),
+                            imgIcon = Icons.Default.Email,
+                            label = "Password",
+                            value = "",
+                            tintColor = MaterialTheme.colorScheme.primary,
+                            onTextChange = {
 
-                            )
+                            },
+                        )
+                        Space(space = 4.dp)
+                        Button(modifier = Modifier
+                            .padding(8.dp)
+                            .fillMaxWidth()
+                            .padding(8.dp), onClick = {},
+                            content = { Text(text = "Log in") })
                     }
                 }
             }

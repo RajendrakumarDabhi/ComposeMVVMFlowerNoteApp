@@ -1,6 +1,5 @@
 package com.example.composemvvmnoteapp.presentation
 
-import android.R
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -22,44 +21,38 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Alignment.Companion.CenterVertically
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.paint
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
-import com.example.composemvvmnoteapp.presentation.utils.Space
+import com.example.composemvvmnoteapp.R
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun HomeScreen(navController: NavController) {
 
-    Scaffold(topBar = {
-        Row(
-            Modifier
-                .fillMaxWidth()
-                .height(45.dp)
-                .background(MaterialTheme.colorScheme.primary)
-        ) {
-            Text(
-                modifier = Modifier.fillMaxWidth().align(CenterVertically),
-                text = "Home Screen",
-                style = MaterialTheme.typography.bodyLarge.copy(color = Color.White)
-            , textAlign = TextAlign.Center)
-        }
-    }) {
-        Box(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(it)
-        ) {
-            Column(modifier = Modifier.align(Alignment.Center)) {
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .paint(
+                painterResource(id = R.drawable.splash_bg),
+                contentScale = ContentScale.FillBounds
+            )
+    )
+    {
+        Scaffold(topBar = { TopAppBar(title = { Text(text = "Home Screen") }) })
+        {
+            Box(modifier = Modifier.padding(it)) {
 
             }
         }
     }
+
 }
 
 @Preview
